@@ -1,10 +1,3 @@
-/*
-
-This file exists here just so I have a track of it.
-It replaces the default autocomplete TagWidget from
-node_modules/@recogito/recogito-client-core/src/editor/widgets/tag/TagWidget.jsx
-
-*/
 import React, { useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { CloseIcon } from '../../../Icons';
@@ -93,10 +86,7 @@ const TagWidget = props => {
               cursor: 'pointer',
               background: 'none',
               display: 'block',
-              height: '100%',
-              ':hover': {
-                background: 'ececec'
-              }
+              height: '100%'
             };
             const styleSelected = {
               background: '#4483c4',
