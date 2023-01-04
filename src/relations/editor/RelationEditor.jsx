@@ -44,9 +44,7 @@ export default class RelationEditor extends Component {
     }
   }
   
-  onSubmit = () => {
-    const value = this.element.current.querySelector('input').value;
-    
+  onSubmit = (value) => {    
     const updatedAnnotation = this.props.relation.annotation.clone({
       motivation: 'linking',
       body: [{
@@ -74,15 +72,39 @@ export default class RelationEditor extends Component {
     this.props.onRelationDeleted(this.props.relation);
 
   render() {
+    const styleButton = {
+      border: 'none',
+      padding: '0.5em 1em',
+      fontSize: '0.9em',
+      fontFamily: 'inherit',
+      cursor: 'pointer',
+      background: 'none',
+      display: 'block',
+      height: '100%'
+    };
     return(
       <div className="r6o-relation-editor" ref={this.element}>
-        <div className="input-wrapper">
-          <Autocomplete 
-            initialValue={getContent(this.props.relation)}
-            placeholder="Tag..."
-            onSubmit={this.onSubmit} 
-            onCancel={this.props.onCancel}
-            vocabulary={this.props.vocabulary || []} />
+        <div className="input-wrapper r6o-widget r6o-tag" style={{ marginRight: '34px' }}>
+          <ul className="r6o-taglist">
+            {
+              (this.props.vocabulary || []).map(word => {
+                const isSelected = getContent(this.props.relation) === word;
+                const style = Object.assign(
+                  {},
+                  styleButton,
+                  isSelected ? { background: '#4483c4', color: '#FFF' } : null
+                );
+                return (
+                  <li>
+                    <button key={word} style={style} onClick={(e) => {
+                      e.preventDefault();
+                      this.onSubmit(word);
+                    }}>{word}</button>
+                  </li>
+                );
+              })
+            }
+          </ul>
         </div>
 
         <div className="buttons">
@@ -90,12 +112,6 @@ export default class RelationEditor extends Component {
             className="r6o-icon delete"
             onClick={this.onDelete}>
             <TrashIcon width={14} />
-          </span>
-
-          <span
-            className="r6o-icon ok"
-            onClick={this.onSubmit}>
-            <CheckIcon width={14} />
           </span>
         </div>
       </div>
