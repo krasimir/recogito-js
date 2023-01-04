@@ -1,3 +1,5 @@
+Object.keys(require.cache).forEach(function(key) { delete require.cache[key] })
+
 import React, { Component } from 'react';
 import { Editor } from '@recogito/recogito-client-core';
 import Highlighter from './highlighter/Highlighter';
