@@ -1,4 +1,4 @@
-import { Selection } from '@recogito/recogito-client-core';
+import { Selection } from '../_recognito-client-core_/src';
 
 export const trimRange = range => {
   let quote = range.toString();

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { TrashIcon, CheckIcon } from '@recogito/recogito-client-core';
-import Autocomplete from '@recogito/recogito-client-core/src/editor/widgets/Autocomplete';
+import { TrashIcon, CheckIcon } from '../../_recognito-client-core_/src';
 
 /**
  * Shorthand to get the label (= first tag body value) from the
@@ -106,7 +105,7 @@ export default class RelationEditor extends Component {
             }
           </ul>
         </div>
-
+  
         <div className="buttons">
           <span 
             className="r6o-icon delete"

@@ -1,2 +1,2 @@
 // Babel polyfills + some Annotorious-specific ones
-import '@recogito/recogito-client-core/src/polyfills';
+import '../_recognito-client-core_/src/polyfills';

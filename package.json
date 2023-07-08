@@ -19,8 +19,8 @@
   "author": "Rainer Simon",
   "license": "BSD-3-Clause",
   "funding": {
-    "type" : "patreon",
-    "url" : "https://www.patreon.com/rainersimon"
+    "type": "patreon",
+    "url": "https://www.patreon.com/rainersimon"
   },
   "bugs": {
     "url": "https://github.com/recogito/recogito-js/issues"
@@ -52,6 +52,7 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "@babel/core": "^7.22.8",
     "@recogito/recogito-client-core": "1.7.7",
     "preact": "^10.5.13",
     "tiny-emitter": "^2.1.0"

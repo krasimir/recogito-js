@@ -2,7 +2,7 @@ import EventEmitter from 'tiny-emitter';
 import Connection from '../Connection';
 import HoverEmphasis from './HoverEmphasis';
 import { getNodeForEvent } from '../RelationUtils';
-import { WebAnnotation } from '@recogito/recogito-client-core';
+import { WebAnnotation } from '../../_recognito-client-core_/src';
 
 /**
  * Wraps an event handler for event delegation. This way, we

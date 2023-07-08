@@ -1,7 +1,7 @@
 Object.keys(require.cache).forEach(function(key) { delete require.cache[key] })
 
 import React, { Component } from 'react';
-import { Editor } from '@recogito/recogito-client-core';
+import { Editor } from './_recognito-client-core_/src';
 import Highlighter from './highlighter/Highlighter';
 import SelectionHandler from './selection/SelectionHandler';
 import RelationsLayer from './relations/RelationsLayer';

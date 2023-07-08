@@ -13,11 +13,11 @@ const getDraftTag = existingDraft =>
 const TagWidget = props => {
 
   // All tags (draft + non-draft)
-  const all = props.annotation ? 
+  const all = props.annotation ?
     props.annotation.bodies.filter(b => b.purpose === 'tagging') : [];
 
   // Last draft tag goes into the input field
-  const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft)); 
+  const draftTag = getDraftTag(all.slice().reverse().find(b => b.draft));
 
   // All except draft tag
   const tags = all.filter(b => b != draftTag);
@@ -66,12 +66,13 @@ const TagWidget = props => {
     if (draftTag.value.trim().length === 0) {
       props.onAppendBody(toSubmit);
     } else {
-      props.onUpdateBody(draftTag, toSubmit); 
+      props.onUpdateBody(draftTag, toSubmit);
     }
   }
 
   // Shorthand
   const tagValue = tag => tag.value || tag.source.label;
+
   return (
     <div className="r6o-widget r6o-tag">
       <ul className="r6o-taglist">
@@ -96,7 +97,7 @@ const TagWidget = props => {
               return (
                 <li key={tagValue(tag)} onClick={toggle(tag)}>
                   <span className="r6o-label" style={styleSelected}>✔ {tagValue(tag)}</span>
-
+  
                   {!props.readOnly &&
                     <CSSTransition in={showDelete === tag} timeout={200} classNames="r6o-delete">
                       <span className="r6o-delete-wrapper" onClick={onDelete(tag)}>
