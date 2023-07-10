@@ -26,7 +26,7 @@ export default class Handle extends EventEmitter {
     this.g.appendChild(this.rect);
     this.g.appendChild(this.text);
     this.g.appendChild(this.arrow);
-    this.svg.appendChild(this.g);
+    // this.svg.appendChild(this.g);
     
     this.g.setAttribute('class', 'handle');
 

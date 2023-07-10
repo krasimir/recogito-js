@@ -27,6 +27,9 @@ export default class RelationEditor extends Component {
 
   componentDidMount() {
     this.setPosition();
+    setTimeout(() => {
+      this.onSubmit(this.props.vocabulary[0]);
+    }, 10);
   }
 
   componentDidUpdate() {
@@ -43,7 +46,7 @@ export default class RelationEditor extends Component {
     }
   }
   
-  onSubmit = (value) => {    
+  onSubmit = (value) => {
     const updatedAnnotation = this.props.relation.annotation.clone({
       motivation: 'linking',
       body: [{
@@ -81,7 +84,9 @@ export default class RelationEditor extends Component {
       display: 'block',
       height: '100%'
     };
-    return(
+    // We are rendring nothing here since we don't want to have UI for editing or creating a relation.
+    return null;
+    return (
       <div className="r6o-relation-editor" ref={this.element}>
         <div className="input-wrapper r6o-widget r6o-tag" style={{ marginRight: '34px' }}>
           <ul className="r6o-taglist">

@@ -81,7 +81,7 @@ const TagWidget = props => {
             const styleButton = {
               border: 'none',
               padding: '0.5em 1em',
-              fontSize: '0.9em',
+              fontSize: '1em',
               fontFamily: 'inherit',
               cursor: 'pointer',
               background: 'none',

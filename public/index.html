@@ -8,6 +8,8 @@
       html, body {
         padding:10px 20px;
         margin:0;
+        font-size: 22px;
+        line-height: 1.2em;
       }
 
       h1 {
@@ -23,8 +25,6 @@
       #content {
         max-width:920px;
         font-family:'Lato', sans-serif;
-        font-size:17px;
-        line-height:27px;
       }
     </style>
   </head>
@@ -88,7 +88,7 @@
           locale: 'auto',
           allowEmpty: true,
       	  widgets: [
-            { widget: 'TAG', vocabulary: [ 'Place', 'Person', 'Event', 'Organization', 'Animal' ] }
+            { widget: 'TAG', vocabulary: [ 'Place', 'Person', 'Event', 'Organization', 'Animal', 'Fish', 'Fruit', 'Something else' ] }
           ],
           relationVocabulary: [ 'isRelated', 'isPartOf', 'isSameAs ']
         });
