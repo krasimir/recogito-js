@@ -23,13 +23,17 @@ export default class RelationEditor extends Component {
     super(props);
 
     this.element = React.createRef();
+    // COWBOY: this is a change to make the editor auto-create a relation
+    this.autoCreate = props.autoCreate || true;
   }
 
   componentDidMount() {
     this.setPosition();
-    setTimeout(() => {
-      this.onSubmit(this.props.vocabulary[0]);
-    }, 10);
+    if (this.autoCreate) {
+      setTimeout(() => {
+        this.onSubmit(this.props.vocabulary[0]);
+      }, 10);
+    }
   }
 
   componentDidUpdate() {
@@ -84,8 +88,9 @@ export default class RelationEditor extends Component {
       display: 'block',
       height: '100%'
     };
-    // We are rendring nothing here since we don't want to have UI for editing or creating a relation.
-    return null;
+    if (this.autoCreate) {
+      return null;
+    }
     return (
       <div className="r6o-relation-editor" ref={this.element}>
         <div className="input-wrapper r6o-widget r6o-tag" style={{ marginRight: '34px' }}>

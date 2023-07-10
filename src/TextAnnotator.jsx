@@ -8,6 +8,7 @@ import RelationsLayer from './relations/RelationsLayer';
 import RelationEditor from './relations/editor/RelationEditor';
 
 import './TextAnnotator.scss';
+import RelationEditorMenu from './relations/editor/RelationEditorMenu';
 
 /**
  * Pulls the strings between the annotation highlight layer
@@ -19,6 +20,7 @@ export default class TextAnnotator extends Component {
     super(props);
 
     this.state = {
+      mode: null,
       selectedAnnotation: null,
       selectedDOMElement: null,
       selectedRelation: null,
@@ -332,6 +334,7 @@ export default class TextAnnotator extends Component {
   }
 
   setMode = mode => {
+    this.setState({ mode });
     if (mode === 'RELATIONS') {
       this.clearState();
 
@@ -381,38 +384,47 @@ export default class TextAnnotator extends Component {
 
     const readOnly = this.state.readOnly || this.state.selectedAnnotation?.readOnly;
 
-    return (open && (
+    return (
       <>
-        { this.state.selectedAnnotation &&
-          <Editor
-            ref={this._editor}
-            autoPosition={this.props.config.editorAutoPosition}
-            wrapperEl={this.props.wrapperEl}
-            annotation={this.state.selectedAnnotation}
-            selectedElement={this.state.selectedDOMElement}
-            readOnly={readOnly}
-            allowEmpty={this.props.config.allowEmpty}
-            widgets={this.state.widgets}
-            env={this.props.env}
-            onChanged={this.onChanged}
-            onAnnotationCreated={this.onCreateOrUpdateAnnotation('onAnnotationCreated')}
-            onAnnotationUpdated={this.onCreateOrUpdateAnnotation('onAnnotationUpdated')}
-            onAnnotationDeleted={this.onDeleteAnnotation}
-            onCancel={this.onCancelAnnotation} />
-        }
+        {open && (
+          <>
+            { this.state.selectedAnnotation &&
+              <Editor
+                ref={this._editor}
+                autoPosition={this.props.config.editorAutoPosition}
+                wrapperEl={this.props.wrapperEl}
+                annotation={this.state.selectedAnnotation}
+                selectedElement={this.state.selectedDOMElement}
+                readOnly={readOnly}
+                allowEmpty={this.props.config.allowEmpty}
+                widgets={this.state.widgets}
+                env={this.props.env}
+                onChanged={this.onChanged}
+                onAnnotationCreated={this.onCreateOrUpdateAnnotation('onAnnotationCreated')}
+                onAnnotationUpdated={this.onCreateOrUpdateAnnotation('onAnnotationUpdated')}
+                onAnnotationDeleted={this.onDeleteAnnotation}
+                onCancel={this.onCancelAnnotation} />
+            }
 
-        { this.state.selectedRelation &&
-          <RelationEditor
-            relation={this.state.selectedRelation}
-            onRelationCreated={this.onCreateOrUpdateRelation}
-            onRelationUpdated={this.onCreateOrUpdateRelation}
-            onRelationDeleted={this.onDeleteRelation}
-            onCancel={this.closeRelationsEditor}
-            vocabulary={this.props.relationVocabulary}
-          />
-        }
+            { this.state.selectedRelation &&
+              <RelationEditor
+                relation={this.state.selectedRelation}
+                onRelationCreated={this.onCreateOrUpdateRelation}
+                onRelationUpdated={this.onCreateOrUpdateRelation}
+                onRelationDeleted={this.onDeleteRelation}
+                onCancel={this.closeRelationsEditor}
+                vocabulary={this.props.relationVocabulary}
+              />
+            }
+          </>
+        )}
+        { this.state.mode === 'RELATIONS' &&
+          <RelationEditorMenu
+            connections={this.relationsLayer.connections}
+            onDelete={relation => this.onDeleteRelation(relation)}
+          />}
       </>
-    ));
+    );
   }
 
 }

@@ -26,6 +26,8 @@ export default class Handle extends EventEmitter {
     this.g.appendChild(this.rect);
     this.g.appendChild(this.text);
     this.g.appendChild(this.arrow);
+
+    // COWBOY: removing the label on the connection handle
     // this.svg.appendChild(this.g);
     
     this.g.setAttribute('class', 'handle');
@@ -42,7 +44,7 @@ export default class Handle extends EventEmitter {
     this.rect.setAttribute('width', Math.round(this.bounds.width) + 5);
     this.rect.setAttribute('height',  Math.round(this.bounds.height));
 
-    this.arrow.setAttribute('class', 'r6o-arrow');    
+    this.arrow.setAttribute('class', 'r6o-arrow');
 
     this.rect.addEventListener('click', () => this.emit('click'));
   }
@@ -73,7 +75,10 @@ export default class Handle extends EventEmitter {
     this.arrow.setAttribute('d', createArrow());
   }
 
-  destroy = () =>
-    this.svg.removeChild(this.g);
+  destroy = () => {
+    if (this.svg.contains(this.g)) {
+      this.svg.removeChild(this.g);
+    }
+  }
 
 };

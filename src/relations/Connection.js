@@ -9,15 +9,16 @@ import { getNodeById } from './RelationUtils'
  */
 export default class Connection extends EventEmitter {
 
-  constructor(contentEl, svgEl, nodeOrAnnotation) {
+  constructor(contentEl, svgEl, nodeOrAnnotation, color) {
     super();
 
     this.svgEl = svgEl;
+    this.color = color;
 
     // SVG elements
-    this.path = document.createElementNS(CONST.NAMESPACE, 'path'),
-    this.startDot = document.createElementNS(CONST.NAMESPACE, 'circle'),
-    this.endDot = document.createElementNS(CONST.NAMESPACE, 'circle'),
+    this.path = document.createElementNS(CONST.NAMESPACE, 'path');
+    this.startDot = document.createElementNS(CONST.NAMESPACE, 'circle');
+    this.endDot = document.createElementNS(CONST.NAMESPACE, 'circle');
 
     svgEl.appendChild(this.path);
     svgEl.appendChild(this.startDot);
@@ -45,6 +46,16 @@ export default class Connection extends EventEmitter {
 
     // A floating connection is not yet attached to an end node.
     this.floating = props.floating;
+    
+    this.getRelation = () => {
+      return {
+        annotation: props.annotation,
+        from: props.fromNode.annotation,
+        to: props.toNode.annotation,
+        midX: this.currentMidXY[0],
+        midY: this.currentMidXY[1]
+      }
+    }
 
     this.redraw();
   }
@@ -62,7 +73,7 @@ export default class Connection extends EventEmitter {
 
     const currentEnd = toNode;
 
-    const handle = new Handle(relation, svgEl);
+    const handle = new Handle(relation, svgEl, this.color);
 
     // RelationsLayer uses click as a selection event
     handle.on('click', () => this.emit('click', {
@@ -111,8 +122,20 @@ export default class Connection extends EventEmitter {
       this.handle.destroy();
   }
 
+  changeColor = (color) => {
+    this.originalColor = this.color;
+    this.color = color;
+    this.redraw();
+  }
+
+  restoreColor = () => {
+    this.color = this.originalColor;
+    this.redraw();
+  }
+
   /** Redraws this connection **/
   redraw = function() {
+    this.path.setAttribute('style', `stroke:${this.color}`);
     if (this.currentEnd) {
       const end = this.endXY;
 
