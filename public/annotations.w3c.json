@@ -1,80 +1,268 @@
-  [
-    { 
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "id": "#ce0ed291-766b-4763-8e91-90ce1d04e706",
-      "type": "Annotation",
-      "body": [{
+[
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#ce0ed291-766b-4763-8e91-90ce1d04e706",
+    "type": "Annotation",
+    "body": [
+      {
         "type": "TextualBody",
         "value": "This is a comment"
-      }, {
+      },
+      {
         "type": "TextualBody",
         "value": "A Tag",
         "purpose": "tagging"
-      }, {
+      },
+      {
         "type": "TextualBody",
         "value": "Another Tag",
         "purpose": "tagging"
-      }],
-      "target": {
-        "selector": [{
+      }
+    ],
+    "target": {
+      "selector": [
+        {
           "type": "TextQuoteSelector",
           "exact": "Troy"
-        }, {
+        },
+        {
           "type": "TextPositionSelector",
           "start": 124,
           "end": 128
-        }]
+        }
+      ]
+    }
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "purpose": "tagging",
+        "value": "Place"
       }
-    }, {
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "id": "#447d4bea-08dc-4bd0-ae51-31f5ed7a95a0",
-      "type": "Annotation",
-      "body": [{
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "many were"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 160,
+          "end": 169
+        }
+      ]
+    },
+    "id": "#f54bf6ee-4d5a-4b74-9c8b-474ff05bc48c"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "purpose": "tagging",
+        "value": "Person"
+      }
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "could"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 354,
+          "end": 359
+        }
+      ]
+    },
+    "id": "#60f8579b-0687-4c0b-8f77-18ddcd50a9b1"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#447d4bea-08dc-4bd0-ae51-31f5ed7a95a0",
+    "type": "Annotation",
+    "body": [
+      {
         "type": "TextualBody",
         "value": "Another comment"
-      }],
-      "target": {
-        "selector": [{
+      }
+    ],
+    "target": {
+      "selector": [
+        {
           "type": "TextQuoteSelector",
           "exact": "death in battle"
-        }, {
+        },
+        {
           "type": "TextPositionSelector",
           "start": 646,
           "end": 661
-        }]
-      }
-    }, {
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "id": "#d7197c87-b45d-4217-9c4f-27573030448f",
-      "type": "Annotation",
-      "body": [{
+        }
+      ]
+    }
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#d7197c87-b45d-4217-9c4f-27573030448f",
+    "type": "Annotation",
+    "body": [
+      {
         "type": "TextualBody",
         "value": "Comment..."
-      }],
-      "target": {
-        "selector": [{
+      }
+    ],
+    "target": {
+      "selector": [
+        {
           "type": "TextQuoteSelector",
           "exact": "Ithaca"
-        }, {
+        },
+        {
           "type": "TextPositionSelector",
           "start": 963,
           "end": 970
-        }]
+        }
+      ]
+    }
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "purpose": "tagging",
+        "value": "Organization"
       }
-    }, { 
-      "@context": "http://www.w3.org/ns/anno.jsonld",
-      "id": "#9ba844a7-e8ec-4127-ad12-1f7f16a240c6",
-      "type": "Annotation",
-      "motivation": "linking",
-      "body": [{
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "his troubles"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 1025,
+          "end": 1037
+        }
+      ]
+    },
+    "id": "#ea80330f-17cc-4aaf-8c9c-5529ff54b3a2"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "body": [
+      {
+        "type": "TextualBody",
+        "purpose": "tagging",
+        "value": "Something else"
+      }
+    ],
+    "target": {
+      "selector": [
+        {
+          "type": "TextQuoteSelector",
+          "exact": "pity him except"
+        },
+        {
+          "type": "TextPositionSelector",
+          "start": 1100,
+          "end": 1115
+        }
+      ]
+    },
+    "id": "#38778f70-075f-4fc0-9e88-6cdc8800e46b"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "id": "#9ba844a7-e8ec-4127-ad12-1f7f16a240c6",
+    "type": "Annotation",
+    "motivation": "linking",
+    "body": [
+      {
         "type": "TextualBody",
         "value": "isRelatedTo",
         "purpose": "tagging"
-      }],
-      "target": [{
+      }
+    ],
+    "target": [
+      {
         "id": "#ce0ed291-766b-4763-8e91-90ce1d04e706"
-      }, {
+      },
+      {
         "id": "#447d4bea-08dc-4bd0-ae51-31f5ed7a95a0"
-      }]
-    }
-  ]
+      }
+    ]
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "id": "#c063e380-3690-43c1-9d72-37ff6424a4a2",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "isRelated",
+        "purpose": "tagging"
+      }
+    ],
+    "target": [
+      {
+        "id": "#f54bf6ee-4d5a-4b74-9c8b-474ff05bc48c"
+      },
+      {
+        "id": "#60f8579b-0687-4c0b-8f77-18ddcd50a9b1"
+      }
+    ],
+    "motivation": "linking"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "id": "#cac31772-2253-487d-aa01-61197fa7b2dd",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "isRelated",
+        "purpose": "tagging"
+      }
+    ],
+    "target": [
+      {
+        "id": "#38778f70-075f-4fc0-9e88-6cdc8800e46b"
+      },
+      {
+        "id": "#ea80330f-17cc-4aaf-8c9c-5529ff54b3a2"
+      }
+    ],
+    "motivation": "linking"
+  },
+  {
+    "@context": "http://www.w3.org/ns/anno.jsonld",
+    "type": "Annotation",
+    "id": "#4bca1109-9983-42b5-943a-242795bd9050",
+    "body": [
+      {
+        "type": "TextualBody",
+        "value": "isRelated",
+        "purpose": "tagging"
+      }
+    ],
+    "target": [
+      {
+        "id": "#447d4bea-08dc-4bd0-ae51-31f5ed7a95a0"
+      },
+      {
+        "id": "#ea80330f-17cc-4aaf-8c9c-5529ff54b3a2"
+      }
+    ],
+    "motivation": "linking"
+  }
+]

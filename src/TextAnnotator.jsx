@@ -8,7 +8,7 @@ import RelationsLayer from './relations/RelationsLayer';
 import RelationEditor from './relations/editor/RelationEditor';
 
 import './TextAnnotator.scss';
-import RelationEditorMenu from './relations/editor/RelationEditorMenu';
+import AnnotationsEditor from './relations/editor/AnnotationsEditor';
 
 /**
  * Pulls the strings between the annotation highlight layer
@@ -419,8 +419,8 @@ export default class TextAnnotator extends Component {
           </>
         )}
         { this.state.mode === 'RELATIONS' &&
-          <RelationEditorMenu
-            connections={this.relationsLayer.connections}
+          <AnnotationsEditor
+            annotations={this.getAnnotations()}
             onDelete={relation => this.onDeleteRelation(relation)}
           />}
       </>

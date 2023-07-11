@@ -10,6 +10,7 @@
         margin:0;
         font-size: 22px;
         line-height: 1.2em;
+        background-color: #67696f;
       }
 
       h1 {
@@ -83,7 +84,7 @@
 
       (function() {
         // Intialize Recogito
-        var r = Recogito.init({
+        var r = window.r = Recogito.init({
           content: 'content', // Element id or DOM node to attach to
           locale: 'auto',
           allowEmpty: true,
