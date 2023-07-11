@@ -3,13 +3,14 @@ import Bounds from './Bounds';
 import Handle from './Handle';
 import CONST from './SVGConst';
 import { getNodeById } from './RelationUtils'
+import { COLORS } from './colors';
 
 /**
  * The connecting line between two annotation highlights.
  */
 export default class Connection extends EventEmitter {
 
-  constructor(contentEl, svgEl, nodeOrAnnotation, color) {
+  constructor(contentEl, svgEl, nodeOrAnnotation, color = COLORS[0]) {
     super();
 
     this.svgEl = svgEl;

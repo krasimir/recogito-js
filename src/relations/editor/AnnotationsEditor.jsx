@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { TrashIcon } from '../../_recognito-client-core_/src/Icons';
+import {COLORS} from '../colors';
 
 const wrapperStyle = {
   position: 'absolute',
@@ -11,15 +12,24 @@ const styleLink = {
   color: 'inherit'
 }
 
-const COLORS = {
+const GROUP_COLORS = {
   highlighted: '#FF0000',
   dim: '#cfcfcf'
 }
 
-export default function AnnotationsEditor({ annotations, onDelete }) {
+export default function AnnotationsEditor({ connections, annotations, onDelete }) {
   const [selectedCon, setSelectedCon] = useState(-1);
 
-  console.log(groupAnnotations(annotations));
+  const groups = groupAnnotations(annotations);
+  
+  connections.forEach(connection => {
+    const annotationId = connection.annotation.id;
+    const group = Object.values(groups).find(g => g.connections.find(id => id === annotationId));
+    if (group) {
+      connection.color = group.color;
+      connection.redraw();
+    }
+  });
 
   return (
     <div style={wrapperStyle}>
@@ -52,7 +62,7 @@ export default function AnnotationsEditor({ annotations, onDelete }) {
 }
 
 function groupAnnotations(annotations) {
-  let id = 1;
+  let id = 0;
   const getId = () => `G${id++}`;
   const links = annotations.filter(a => a.motivation === 'linking');
   const getAnnotation = id => annotations.find(a => a.id === id);
@@ -64,11 +74,16 @@ function groupAnnotations(annotations) {
     consumedLinks[link.id] = true;
     const groupId = gId || getId();
     if (!groups[groupId]) {
-      groups[groupId] = [];
+      groups[groupId] = {
+        color: COLORS[id],
+        annotations: [],
+        connections: []
+      };
     };
+    groups[groupId].connections.push(link.id);
     link.target.forEach(({ id }) => {
-      if (!groups[groupId].find(({ id: aId }) => aId === id)) {
-        groups[groupId].push(getAnnotation(id));
+      if (!groups[groupId].annotations.find(({ id: aId }) => aId === id)) {
+        groups[groupId].annotations.push(getAnnotation(id));
       }
       const linksWithSameAnnotation = links.filter(l => l.target.find(t => t.id === id));
       linksWithSameAnnotation.forEach(link => processLink(link, groupId));

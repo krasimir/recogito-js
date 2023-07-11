@@ -420,6 +420,7 @@ export default class TextAnnotator extends Component {
         )}
         { this.state.mode === 'RELATIONS' &&
           <AnnotationsEditor
+            connections={this.relationsLayer.connections}
             annotations={this.getAnnotations()}
             onDelete={relation => this.onDeleteRelation(relation)}
           />}

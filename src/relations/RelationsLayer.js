@@ -4,7 +4,6 @@ import CONST from './SVGConst';
 import EventEmitter from 'tiny-emitter';
 
 import './RelationsLayer.scss';
-import {COLORS} from './colors';
 
 export default class RelationsLayer extends EventEmitter {
 
@@ -35,8 +34,7 @@ export default class RelationsLayer extends EventEmitter {
 
   /** Shorthand **/
   createConnection = annotation => {
-    const color = COLORS[this.connections.length] ? COLORS[this.connections.length] : COLORS[0];
-    const c = new Connection(this.contentEl, this.svg, annotation, color);
+    const c = new Connection(this.contentEl, this.svg, annotation);
 
     // Forward click event as selection, unless we're read-only
     c.on('click', relation => this.emit('selectRelation', relation));
