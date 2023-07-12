@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import get from 'lodash/get';
 
 import { TrashIcon } from '../../_recognito-client-core_/src/Icons';
-import { COLORS } from '../colors';
 
 const STYLES = {
   wrapper: {

@@ -9,7 +9,7 @@ import RelationEditor from './relations/editor/RelationEditor';
 
 import './TextAnnotator.scss';
 import ReletationsMenu from './relations/editor/ReletationsMenu';
-import { COLORS } from './relations/colors';
+import { getColor } from './relations/colors';
 
 /**
  * Pulls the strings between the annotation highlight layer
@@ -465,7 +465,7 @@ function groupAnnotations(annotations) {
     const groupId = gId || getId();
     if (!groups[groupId]) {
       groups[groupId] = {
-        color: COLORS[id],
+        color: getColor(id - 1),
         annotations: [],
         connections: []
       };

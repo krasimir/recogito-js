@@ -39,9 +39,7 @@
     </div>
 
     <div id="outer-container">
-      <div id="content" class="plaintext">
-        
-      </div>
+      <div id="content" class="plaintext"></div>
     </div>
 
     <script type="text/javascript">
@@ -85,7 +83,8 @@
       	  widgets: [
             { widget: 'TAG', vocabulary: [ 'Place', 'Person', 'Event', 'Organization', 'Animal', 'Fish', 'Fruit', 'Something else' ] }
           ],
-          relationVocabulary: [ 'isRelated', 'isPartOf', 'isSameAs ']
+          relationVocabulary: [ 'isRelated', 'isPartOf', 'isSameAs '],
+          colors: ['#000000', '#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#00FFFF', '#FF00FF']
         });
 
         r.loadAnnotations(ANNOTATIONS_FILE)

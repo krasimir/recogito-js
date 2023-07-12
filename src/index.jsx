@@ -10,6 +10,7 @@ import TextAnnotator from './TextAnnotator';
 import { deflateHTML } from './utils';
 
 import './_recognito-client-core_/themes/default';
+import { initColors } from './relations/colors';
 
 /**
  * The entrypoint into the application. Provides the
@@ -18,6 +19,11 @@ import './_recognito-client-core_/themes/default';
 export class Recogito {
 
   constructor(config) {
+
+    if (config.colors) {
+      initColors(config.colors);
+    }
+
     // API calls to this instance are forwarded through a ref
     this._app = React.createRef();
 

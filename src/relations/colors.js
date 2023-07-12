@@ -1,4 +1,4 @@
-export const COLORS = [
+window.__COLORS = [
   "#000000", // Black
   "#9F0000", // Red
   "#08b208", // Green
@@ -53,3 +53,11 @@ export const COLORS = [
   "#FF6347", // Tomato
   "#87CEEB"  // Sky Blue
 ];
+
+export function initColors(value) {
+  window.__COLORS = value;
+}
+
+export function getColor(idx) {
+  return window.__COLORS[idx] || window.__COLORS[0];
+}
