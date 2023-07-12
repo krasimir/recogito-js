@@ -145,12 +145,12 @@
       "selector": [
         {
           "type": "TextQuoteSelector",
-          "exact": "his troubles"
+          "exact": "his troubles were not yet over; nevertheless all"
         },
         {
           "type": "TextPositionSelector",
           "start": 1025,
-          "end": 1037
+          "end": 1073
         }
       ]
     },

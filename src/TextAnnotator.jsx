@@ -8,7 +8,8 @@ import RelationsLayer from './relations/RelationsLayer';
 import RelationEditor from './relations/editor/RelationEditor';
 
 import './TextAnnotator.scss';
-import AnnotationsEditor from './relations/editor/AnnotationsEditor';
+import ReletationsMenu from './relations/editor/ReletationsMenu';
+import { COLORS } from './relations/colors';
 
 /**
  * Pulls the strings between the annotation highlight layer
@@ -213,6 +214,7 @@ export default class TextAnnotator extends Component {
     this.highlighter.removeAnnotation(annotation);
 
     this.props.onAnnotationDeleted(annotation);
+    this.updateGroups();
   }
 
   /** Cancel button on annotation editor **/
@@ -252,10 +254,13 @@ export default class TextAnnotator extends Component {
     // otherwise, fire 'update'
     const isNew = previous.annotation.bodies.length === 0;
 
-    if (isNew)
+    if (isNew) {
       this.props.onAnnotationCreated(relation.annotation.clone(), this.overrideRelationId(relation.annotation.id));
-    else
+    } else {
       this.props.onAnnotationUpdated(relation.annotation.clone(), previous.annotation.clone());
+    }
+
+    this.updateGroups();
   }
 
   /** 'Delete' on the relation editor popup **/
@@ -263,6 +268,7 @@ export default class TextAnnotator extends Component {
     this.relationsLayer.removeRelation(relation);
     this.closeRelationsEditor();
     this.props.onAnnotationDeleted(relation.annotation);
+    this.updateGroups();
   }
 
   /****************/
@@ -329,8 +335,9 @@ export default class TextAnnotator extends Component {
     
     const clones = annotations.map(a => a.clone());
 
-    return this.highlighter.init(clones).then(() =>
-      this.relationsLayer.init(clones));
+    return this.highlighter.init(clones)
+      .then(() => this.relationsLayer.init(clones))
+      .then(() => this.updateGroups());
   }
 
   setMode = mode => {
@@ -350,6 +357,19 @@ export default class TextAnnotator extends Component {
       this.relationsLayer.readOnly = true;
       this.relationsLayer.stopDrawing();
     }
+  }
+
+  updateGroups = () => {
+    const groups = this.groups = groupAnnotations(this.getAnnotations());
+  
+    this.relationsLayer.connections.forEach(connection => {
+      const annotationId = connection.annotation.id;
+      const group = Object.values(groups).find(g => g.connections.find(id => id === annotationId));
+      if (group) {
+        connection.color = group.color;
+        connection.redraw();
+      }
+    });
   }
 
   get readOnly() {
@@ -419,7 +439,8 @@ export default class TextAnnotator extends Component {
           </>
         )}
         { this.state.mode === 'RELATIONS' &&
-          <AnnotationsEditor
+          <ReletationsMenu
+            groups={this.groups}
             connections={this.relationsLayer.connections}
             annotations={this.getAnnotations()}
             onDelete={relation => this.onDeleteRelation(relation)}
@@ -428,4 +449,38 @@ export default class TextAnnotator extends Component {
     );
   }
 
+}
+
+function groupAnnotations(annotations) {
+  let id = 0;
+  const getId = () => `G${id++}`;
+  const links = annotations.filter(a => a.motivation === 'linking');
+  const getAnnotation = id => annotations.find(a => a.id === id);
+  const groups = {};
+  const consumedLinks = {};
+
+  function processLink(link, gId) {
+    if (consumedLinks[link.id]) return;
+    consumedLinks[link.id] = true;
+    const groupId = gId || getId();
+    if (!groups[groupId]) {
+      groups[groupId] = {
+        color: COLORS[id],
+        annotations: [],
+        connections: []
+      };
+    };
+    groups[groupId].connections.push(link.id);
+    link.target.forEach(({ id }) => {
+      if (!groups[groupId].annotations.find(({ id: aId }) => aId === id)) {
+        groups[groupId].annotations.push(getAnnotation(id));
+      }
+      const linksWithSameAnnotation = links.filter(l => l.target.find(t => t.id === id));
+      linksWithSameAnnotation.forEach(link => processLink(link, groupId));
+    });
+  }
+
+  links.forEach(link => processLink(link));
+
+  return groups;
 }

@@ -1,9 +1,9 @@
 export const COLORS = [
   "#000000", // Black
-  "#FF0000", // Red
+  "#9F0000", // Red
   "#08b208", // Green
   "#0e77d1", // Blue
-  "#FFFF00", // Yellow
+  "#b9b935", // Yellow
   "#FF00FF", // Magenta
   "#00FFFF", // Cyan
   "#FFA500", // Orange
@@ -15,7 +15,7 @@ export const COLORS = [
   "#008080", // Teal
   "#800000", // Maroon
   "#DC143C", // Crimson
-  "#FFFFE0", // Light Yellow
+  "#000000", // Light Yellow
   "#BA55D3", // Medium Orchid
   "#006400", // Dark Green
   "#FF4500", // Orange Red

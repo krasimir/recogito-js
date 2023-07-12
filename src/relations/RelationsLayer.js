@@ -69,7 +69,7 @@ export default class RelationsLayer extends EventEmitter {
   recomputeAll = () => {
     this.connections.forEach(conn => {
       conn.recompute();
-    })
+    });
   }
 
   addOrUpdateRelation = (relation, maybePrevious) => {
