@@ -15,14 +15,7 @@ const STYLES = {
     color: 'inherit'
   },
   connection: {
-    fontSize: '0.8em',
-    lineHeight: '0.8em',
-    marginLeft: '0.8em',
-    marginBottom: '0.5em',
-    paddingLeft: '0.4em',
-    paddingBottom: '0.4em',
-    borderLeft: '2px solid #999',
-    borderBottom: '2px solid #999'
+    
   }
 }
 
@@ -39,7 +32,10 @@ export default function ReletationsMenu({ groups, connections, annotations, onDe
               <a
                 href="javascript:void(0);"
                 class="c-relations-group-link"
-                onClick={() => setSelectedGroup(i)}
+                onClick={() => {
+                  scrollToElement(group.annotations[0].id);
+                  setSelectedGroup(i);
+                }}
               >
                 Group #{i+1}
               </a>
@@ -83,6 +79,16 @@ export default function ReletationsMenu({ groups, connections, annotations, onDe
   )
 }
 
-/*
-
-*/
+function scrollToElement(id) {
+  const element = document.querySelector(`[data-id='${id}']`);
+  if (!element) return;
+  window.scrollTo(0, 0);
+  setTimeout(() => {
+    const elementPosition = element.getBoundingClientRect();
+    const scrollOffset = {
+      x: elementPosition.left,
+      y: elementPosition.top,
+    };
+    window.scrollTo(scrollOffset.x, scrollOffset.y);
+  }, 10);
+}
