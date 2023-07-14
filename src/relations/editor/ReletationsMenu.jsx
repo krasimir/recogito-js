@@ -31,24 +31,22 @@ export default function ReletationsMenu({ groups, connections, annotations, onDe
   const gs = Object.values(groups || {});  
 
   return (
-    <div style={STYLES.wrapper}>
+    <div class="c-relations-menu">
       {
         gs.map((group, i) => {
-          const groupStyle = { ...STYLES.group, color: group.color };
           return (
-            <div>
+            <div class={`c-relations-item c-relations-item-${i+1}`} style={{ color: group.color }}>
               <a
                 href="javascript:void(0);"
-                style={groupStyle}
+                class="c-relations-group-link"
                 onClick={() => setSelectedGroup(i)}
               >
                 Group #{i+1}
               </a>
               {selectedGroup === i && (
                 <div>
-                  {group.connections.map((connectionId) => {
+                  {group.connections.map((connectionId, j) => {
                     let label = '';
-                    const connectionStyle = { ...STYLES.connection, color: group.color };
                     const connection = connections.find(c => c.annotation.id === connectionId);
                     if (connection) {
                       const linkedAnnotations = get(connection, 'annotation.target', []).map(({ id }) => {
@@ -62,11 +60,11 @@ export default function ReletationsMenu({ groups, connections, annotations, onDe
                       }
                     }
                     return (
-                      <div style={connectionStyle}>
+                      <div class={`c-relations-menu-con c-relations-menu-con-${j+1}`}>
                         {label}&nbsp;&nbsp;
                         <a
                           href="javascript:void(0);"
-                          style={{ color: 'inherit' }}
+                          class="c-relations-menu-con-link"
                           onClick={() => onDelete(connection.getRelation())}
                         >
                           <TrashIcon width={12}/>
